@@ -82,8 +82,11 @@ export class Chat extends DurableObject {
   }
 
   isAdmin(request) {
-    const key = request.headers.get("x-admin-key") || "";
-    return Boolean(this.env.ADMIN_KEY) && key === this.env.ADMIN_KEY;
+    // Ο κωδικός έρχεται κωδικοποιημένος, ώστε να δουλεύουν και ελληνικοί χαρακτήρες
+    let key = request.headers.get("x-admin-key") || "";
+    try { key = decodeURIComponent(key); } catch {}
+    const real = String(this.env.ADMIN_KEY || "").normalize("NFC").trim();
+    return Boolean(real) && key.normalize("NFC").trim() === real;
   }
 
   async fetch(request) {

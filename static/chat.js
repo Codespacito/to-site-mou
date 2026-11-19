@@ -163,7 +163,7 @@ async function load() {
 }
 
 async function adminCall(method, path) {
-  const r = await fetch(path, { method, headers: { "x-admin-key": adminKey } });
+  const r = await fetch(path, { method, headers: { "x-admin-key": encodeURIComponent(adminKey) } });
   const d = await r.json().catch(() => ({}));
   if (!r.ok) { $("adminStatus").textContent = d.error || "Σφάλμα"; return; }
   lastIds = "";
@@ -207,8 +207,14 @@ $("form").onsubmit = async (e) => {
 $("adminToggle").onclick = (e) => { e.preventDefault(); $("admin").classList.toggle("open"); };
 if (adminKey) { $("admin").classList.add("open"); $("adminStatus").textContent = "Είσαι διαχειριστής."; }
 $("adminLogin").onclick = async () => {
-  const key = $("adminKey").value;
-  const r = await fetch("/api/admin/check", { method: "POST", headers: { "x-admin-key": key } });
+  const key = $("adminKey").value.trim();
+  let r;
+  try {
+    r = await fetch("/api/admin/check", { method: "POST", headers: { "x-admin-key": encodeURIComponent(key) } });
+  } catch (e) {
+    $("adminStatus").textContent = "Δεν υπάρχει σύνδεση, δοκίμασε ξανά.";
+    return;
+  }
   if (r.ok) {
     adminKey = key; store("agrioi-admin", key);
     $("adminStatus").textContent = "Είσαι διαχειριστής.";
