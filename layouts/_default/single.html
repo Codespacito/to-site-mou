@@ -2,6 +2,9 @@
   <article>
     <h1>{{ .Title }}</h1>
     <div class="date">{{ .Date | time.Format ":date_long" }}</div>
+    {{ with .Params.image }}
+      <img src="{{ . | relURL }}" alt="{{ $.Title }}">
+    {{ end }}
     {{ if eq .Section "fotografies" }}
       {{ range .Resources.Match "*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}" }}
         {{ $img := . }}

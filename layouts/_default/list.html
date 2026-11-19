@@ -5,9 +5,13 @@
     <div class="grid">
       {{ range .Pages.ByDate.Reverse }}
         <a href="{{ .RelPermalink }}">
-          {{ with .Resources.GetMatch "*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}" }}
-            {{ $thumb := .Fill "400x400 Center" }}
-            <img src="{{ $thumb.RelPermalink }}" alt="" loading="lazy">
+          {{ with .Params.image }}
+            <img src="{{ . | relURL }}" alt="" loading="lazy">
+          {{ else }}
+            {{ with .Resources.GetMatch "*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}" }}
+              {{ $thumb := .Fill "400x400 Center" }}
+              <img src="{{ $thumb.RelPermalink }}" alt="" loading="lazy">
+            {{ end }}
           {{ end }}
           {{ .Title }}
         </a>

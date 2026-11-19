@@ -1,14 +1,15 @@
-baseURL = "https://to-domain-sou.gr/"
+# άγριοι-δολιανών.ελ γραμμένο σε μορφή που καταλαβαίνουν οι υπολογιστές (punycode)
+baseURL = "https://xn----olbqgg2aacrwaqdw9r.xn--qxam/"
 languageCode = "el"
 defaultContentLanguage = "el"
-title = "Το site μου"
+title = "Άγριοι Δολιανών"
 
 # Δεν χρειαζόμαστε tags/κατηγορίες προς το παρόν
 disableKinds = ["taxonomy", "term"]
 
 [params]
   description = "Ποιήματα, στίχοι, κείμενα και φωτογραφίες"
-  author = "Το όνομά σου"
+  author = "Άγριοι Δολιανών"
 
 [markup.goldmark.renderer]
   # Κάθε αλλαγή γραμμής στο κείμενο γίνεται αλλαγή γραμμής στη σελίδα (ιδανικό για ποιήματα)

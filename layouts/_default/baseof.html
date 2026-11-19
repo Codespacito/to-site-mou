@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  <link rel="icon" type="image/png" href="{{ "favicon.png" | relURL }}">
   <style>
-    :root { --bg:#fbf9f5; --fg:#2b2a28; --muted:#7a756d; --accent:#8a4b2e; --line:#e6e1d8; }
+    :root { --bg:#fbf9f5; --fg:#2b2a28; --muted:#7a756d; --accent:#b8221d; --line:#e6e1d8; }
     @media (prefers-color-scheme: dark) {
-      :root { --bg:#1c1b19; --fg:#e9e5dd; --muted:#a39d93; --accent:#d9946f; --line:#36332e; }
+      :root { --bg:#141313; --fg:#e9e5dd; --muted:#a39d93; --accent:#ec3b33; --line:#332f2d; }
     }
+    header a.site { display:flex; align-items:center; gap:14px; }
+    header a.site img { width:64px; height:64px; margin:0; border-radius:50%; }
     * { box-sizing: border-box; }
     body { margin:0; background:var(--bg); color:var(--fg);
            font-family: Georgia, "Times New Roman", serif; font-size:19px; line-height:1.7; }
@@ -39,7 +42,7 @@
 <body>
   <div class="wrap">
     <header>
-      <a class="site" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+      <a class="site" href="{{ "/" | relURL }}"><img src="{{ "logo.png" | relURL }}" alt="">{{ site.Title }}</a>
       <nav>
         {{ $current := . }}
         {{ range site.Menus.main }}
