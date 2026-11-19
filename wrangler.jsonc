@@ -1,0 +1,13 @@
+{
+  "name": "to-site-mou",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-06-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "CHAT", "class_name": "Chat" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Chat"] }]
+}

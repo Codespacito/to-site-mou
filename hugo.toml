@@ -1,5 +1,5 @@
-# άγριοι-δολιανών.ελ γραμμένο σε μορφή που καταλαβαίνουν οι υπολογιστές (punycode)
-baseURL = "https://xn----olbqgg2aacrwaqdw9r.xn--qxam/"
+# αγριοι-δολιανων.ελ γραμμένο σε μορφή που καταλαβαίνουν οι υπολογιστές (punycode)
+baseURL = "https://xn----ylbbgg2aacrwaqdw4k.xn--qxam/"
 languageCode = "el"
 defaultContentLanguage = "el"
 title = "Άγριοι Δολιανών"
@@ -31,3 +31,7 @@ disableKinds = ["taxonomy", "term"]
   name = "Φωτογραφίες"
   pageRef = "/fotografies"
   weight = 4
+[[menus.main]]
+  name = "Μηνύματα"
+  pageRef = "/minimata"
+  weight = 5

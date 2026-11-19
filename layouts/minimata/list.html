@@ -1,0 +1,65 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ .Content }}
+
+<style>
+  .chat { border:1px solid var(--line); border-radius:8px; padding:6px 16px; min-height:120px; margin:18px 0 22px; }
+  .chat .empty { color:var(--muted); font-style:italic; padding:16px 0; }
+  .msg { padding:10px 0; border-bottom:1px solid var(--line); }
+  .msg:last-child { border-bottom:none; }
+  .msg .who { font-family:system-ui,sans-serif; font-weight:600; font-size:0.9rem; }
+  .msg .when { font-family:system-ui,sans-serif; color:var(--muted); font-size:0.75rem; margin-left:6px; }
+  .msg .text { white-space:pre-wrap; word-wrap:break-word; margin-top:2px; }
+  .msg .tools { float:right; font-family:system-ui,sans-serif; font-size:0.75rem; }
+  .msg .tools button { margin-left:6px; }
+  .form { font-family:system-ui,sans-serif; font-size:0.95rem; }
+  .form label { display:block; color:var(--muted); font-size:0.8rem; margin:10px 0 4px; }
+  .form input, .form textarea { width:100%; padding:9px 10px; font:inherit; color:var(--fg); background:transparent;
+    border:1px solid var(--line); border-radius:6px; }
+  .form textarea { min-height:80px; resize:vertical; font-family:Georgia, serif; font-size:1rem; }
+  .nickrow { display:flex; gap:8px; }
+  .row { display:flex; justify-content:space-between; align-items:center; margin-top:10px; gap:10px; }
+  .count { color:var(--muted); font-size:0.8rem; }
+  .err { color:var(--accent); font-size:0.85rem; min-height:1.2em; margin-top:8px; }
+  button { font:inherit; cursor:pointer; border:1px solid var(--line); background:transparent; color:var(--fg);
+    border-radius:6px; padding:8px 12px; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#fff; padding:9px 20px; }
+  button:disabled { opacity:.5; cursor:default; }
+  .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .admin { margin-top:40px; font-family:system-ui,sans-serif; font-size:0.75rem; color:var(--muted); }
+  .admin a { color:var(--muted); }
+  .admin .panel { display:none; margin-top:8px; gap:8px; align-items:center; flex-wrap:wrap; }
+  .admin.open .panel { display:flex; }
+  .admin input { padding:6px 8px; font:inherit; border:1px solid var(--line); border-radius:6px; background:transparent; color:var(--fg); }
+</style>
+
+<div class="chat" id="chat" aria-live="polite"><div class="empty">Φόρτωση…</div></div>
+
+<form class="form" id="form" autocomplete="off">
+  <label for="nick">Ψευδώνυμο</label>
+  <div class="nickrow">
+    <input id="nick" maxlength="24" required>
+    <button type="button" id="dice" title="Πρότεινε άλλο ψευδώνυμο">🎲</button>
+  </div>
+  <label for="text">Μήνυμα</label>
+  <textarea id="text" maxlength="250" required placeholder="Γράψε κάτι…"></textarea>
+  <div class="hp" aria-hidden="true"><input id="website" tabindex="-1" autocomplete="off"></div>
+  <div class="row">
+    <span class="count" id="count">0 / 250</span>
+    <button type="submit" class="primary" id="send">Στείλε</button>
+  </div>
+  <div class="err" id="err"></div>
+</form>
+
+<div class="admin" id="admin">
+  <a href="#" id="adminToggle">διαχείριση</a>
+  <div class="panel">
+    <input type="password" id="adminKey" placeholder="κωδικός">
+    <button type="button" id="adminLogin">Είσοδος</button>
+    <button type="button" id="adminClear">Σβήσε όλα</button>
+    <span id="adminStatus"></span>
+  </div>
+</div>
+
+<script src="{{ "chat.js" | relURL }}"></script>
+{{ end }}
