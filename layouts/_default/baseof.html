@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  <style>
+    :root { --bg:#fbf9f5; --fg:#2b2a28; --muted:#7a756d; --accent:#8a4b2e; --line:#e6e1d8; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#1c1b19; --fg:#e9e5dd; --muted:#a39d93; --accent:#d9946f; --line:#36332e; }
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--fg);
+           font-family: Georgia, "Times New Roman", serif; font-size:19px; line-height:1.7; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+    header { border-bottom:1px solid var(--line); padding: 28px 0 18px; }
+    header a.site { color:var(--fg); text-decoration:none; font-size:1.6rem; }
+    nav { margin-top:8px; font-family: system-ui, sans-serif; font-size:0.95rem; }
+    nav a { color:var(--muted); text-decoration:none; margin-right:18px; }
+    nav a:hover, nav a.active { color:var(--accent); }
+    main { padding: 36px 0 60px; }
+    h1 { font-weight:normal; font-size:2rem; line-height:1.3; margin:0 0 6px; }
+    .date { color:var(--muted); font-family: system-ui, sans-serif; font-size:0.85rem; margin-bottom:28px; }
+    a { color:var(--accent); }
+    img { max-width:100%; height:auto; border-radius:4px; display:block; margin: 20px 0; }
+    ul.list { list-style:none; padding:0; }
+    ul.list li { padding:14px 0; border-bottom:1px solid var(--line); }
+    ul.list li a { color:var(--fg); text-decoration:none; font-size:1.2rem; }
+    ul.list li a:hover { color:var(--accent); }
+    ul.list .meta { color:var(--muted); font-family: system-ui, sans-serif; font-size:0.8rem; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:14px; }
+    .grid a { color:var(--fg); text-decoration:none; font-size:0.95rem; }
+    .grid img { margin:0 0 6px; aspect-ratio: 1/1; object-fit: cover; width:100%; }
+    footer { border-top:1px solid var(--line); padding:20px 0 40px; color:var(--muted);
+             font-family: system-ui, sans-serif; font-size:0.8rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="site" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+      <nav>
+        {{ $current := . }}
+        {{ range site.Menus.main }}
+          <a href="{{ .URL }}"{{ if $current.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a>
+        {{ end }}
+      </nav>
+    </header>
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer>© {{ now.Year }} {{ site.Params.author }}</footer>
+  </div>
+</body>
+</html>

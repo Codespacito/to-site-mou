@@ -1,0 +1,12 @@
+{{ define "main" }}
+  {{ .Content }}
+  <h2 style="font-weight:normal">Πρόσφατα</h2>
+  <ul class="list">
+    {{ range first 15 site.RegularPages.ByDate.Reverse }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a><br>
+        <span class="meta">{{ with .Parent }}{{ .Title }} · {{ end }}{{ .Date | time.Format ":date_long" }}</span>
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}

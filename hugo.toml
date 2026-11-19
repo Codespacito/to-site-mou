@@ -1,0 +1,32 @@
+baseURL = "https://to-domain-sou.gr/"
+languageCode = "el"
+defaultContentLanguage = "el"
+title = "Το site μου"
+
+# Δεν χρειαζόμαστε tags/κατηγορίες προς το παρόν
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  description = "Ποιήματα, στίχοι, κείμενα και φωτογραφίες"
+  author = "Το όνομά σου"
+
+[markup.goldmark.renderer]
+  # Κάθε αλλαγή γραμμής στο κείμενο γίνεται αλλαγή γραμμής στη σελίδα (ιδανικό για ποιήματα)
+  hardWraps = true
+
+[[menus.main]]
+  name = "Ποιήματα"
+  pageRef = "/poiimata"
+  weight = 1
+[[menus.main]]
+  name = "Στίχοι"
+  pageRef = "/stixoi"
+  weight = 2
+[[menus.main]]
+  name = "Κείμενα"
+  pageRef = "/keimena"
+  weight = 3
+[[menus.main]]
+  name = "Φωτογραφίες"
+  pageRef = "/fotografies"
+  weight = 4

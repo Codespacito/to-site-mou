@@ -1,0 +1,26 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  {{ if eq .Section "fotografies" }}
+    <div class="grid">
+      {{ range .Pages.ByDate.Reverse }}
+        <a href="{{ .RelPermalink }}">
+          {{ with .Resources.GetMatch "*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}" }}
+            {{ $thumb := .Fill "400x400 Center" }}
+            <img src="{{ $thumb.RelPermalink }}" alt="" loading="lazy">
+          {{ end }}
+          {{ .Title }}
+        </a>
+      {{ end }}
+    </div>
+  {{ else }}
+    <ul class="list">
+      {{ range .Pages.ByDate.Reverse }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a><br>
+          <span class="meta">{{ .Date | time.Format ":date_long" }}</span>
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+{{ end }}
