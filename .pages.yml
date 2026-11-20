@@ -1,0 +1,129 @@
+media:
+  input: static/images
+  output: /images
+
+content:
+  - name: gnomika
+    label: Γνωμικά (βελανίδι)
+    type: file
+    path: data/gnomika.yml
+    fields:
+      - name: gnomika
+        label: Γνωμικά
+        type: object
+        list:
+          collapsible:
+            summary: "{syggrafeas}: {keimeno}"
+        fields:
+          - name: keimeno
+            label: Γνωμικό
+            type: text
+            required: true
+          - name: prototypo
+            label: Πρωτότυπο (προαιρετικό)
+            type: text
+          - name: syggrafeas
+            label: Συγγραφέας
+            type: string
+          - name: pigi
+            label: Πηγή (προαιρετικό)
+            type: string
+
+  - name: arxiki
+    label: Αρχική (εισαγωγή)
+    type: file
+    path: content/_index.md
+    fields:
+      - name: title
+        label: Τίτλος
+        type: string
+      - name: body
+        label: Κείμενο εισαγωγής
+        type: rich-text
+
+  - name: poioi
+    label: Ποιοι είμαστε
+    type: file
+    path: content/poioi-eimaste.md
+    fields:
+      - name: title
+        label: Τίτλος
+        type: string
+      - name: body
+        label: Κείμενο
+        type: rich-text
+
+  - name: poiimata
+    label: Ποιήματα
+    type: collection
+    path: content/poiimata
+    view:
+      fields: [title, date]
+    fields:
+      - name: title
+        label: Τίτλος
+        type: string
+        required: true
+      - name: date
+        label: Ημερομηνία
+        type: date
+      - name: body
+        label: Ποίημα
+        type: text
+
+  - name: stixoi
+    label: Στίχοι
+    type: collection
+    path: content/stixoi
+    view:
+      fields: [title, date]
+    fields:
+      - name: title
+        label: Τίτλος
+        type: string
+        required: true
+      - name: date
+        label: Ημερομηνία
+        type: date
+      - name: body
+        label: Στίχοι
+        type: text
+
+  - name: keimena
+    label: Κείμενα
+    type: collection
+    path: content/keimena
+    view:
+      fields: [title, date]
+    fields:
+      - name: title
+        label: Τίτλος
+        type: string
+        required: true
+      - name: date
+        label: Ημερομηνία
+        type: date
+      - name: body
+        label: Κείμενο
+        type: rich-text
+
+  - name: fotografies
+    label: Φωτογραφίες
+    type: collection
+    path: content/fotografies
+    view:
+      fields: [title, date]
+    fields:
+      - name: title
+        label: Τίτλος
+        type: string
+        required: true
+      - name: date
+        label: Ημερομηνία
+        type: date
+      - name: image
+        label: Φωτογραφία
+        type: image
+      - name: body
+        label: Λεζάντα (προαιρετικά)
+        type: text
