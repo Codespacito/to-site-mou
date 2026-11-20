@@ -79,7 +79,7 @@
 
 <template id="gnomika">
   {{- with site.Data.gnomika }}{{ range .gnomika }}
-  <div data-author="{{ .syggrafeas | default "" }}" data-orig="{{ .prototypo | default "" }}" data-src="{{ .pigi | default "" }}">{{ .keimeno }}</div>
+  <div data-author="{{ .syggrafeas | default "" }}" data-orig="{{ .prototypo | default "" }}" data-pigi="{{ .pigi | default "" }}">{{ .keimeno }}</div>
   {{- end }}{{ end }}
 </template>
 

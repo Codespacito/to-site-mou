@@ -64,7 +64,7 @@
       text: d.textContent.trim(),
       author: (d.dataset.author || "").trim(),
       orig: (d.dataset.orig || "").trim(),
-      src: (d.dataset.src || "").trim(),
+      src: (d.dataset.pigi || "").trim(),
     }))
     .filter((q) => q.text) : [];
   const byText = new Map(all.map((q) => [q.text, q]));
@@ -109,8 +109,9 @@
 
     setTimeout(() => {
       const q = all.length ? next() : { text: "Το βελανίδι είναι ακόμα άδειο.", author: "" };
-      qtext.textContent = q.text;
-      qorig.textContent = q.orig || "";
+      // Πρώτα το πρωτότυπο (μεγάλο), από κάτω η απόδοση (μικρότερη)
+      qtext.textContent = q.orig || q.text;
+      qorig.textContent = q.orig ? q.text : "";
       qauth.textContent = q.author ? "— " + q.author + (q.src ? ", " + q.src : "") : "";
       acorn.classList.add("open");
       setTimeout(() => { quote.classList.add("show"); busy = false; }, reduce ? 0 : 450);
