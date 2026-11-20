@@ -1,7 +1,7 @@
 {{ define "main" }}
   <article>
     <h1>{{ .Title }}</h1>
-    <div class="date">{{ .Date | time.Format ":date_long" }}</div>
+    {{ if not .Date.IsZero }}<div class="date">{{ .Date | time.Format ":date_long" }}</div>{{ end }}
     {{ with .Params.image }}
       <img src="{{ . | relURL }}" alt="{{ $.Title }}">
     {{ end }}
